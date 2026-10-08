@@ -29,7 +29,7 @@ Button 2 LED/
 ├── .vscode/
 ├── include/
 ├── src/
-│   └── main.cpp       # Chương trình chính (setup & loop)
+│   └── main.cpp    
 ├── .gitignore
-├── platformio.ini     # Cấu hình môi trường PlatformIO & Thư viện
-└── README.md          # Tài liệu hướng dẫn dự án
+├── platformio.ini     
+└── README.md       
