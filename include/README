@@ -1,0 +1,47 @@
+# ESP32 OneButton LED Control (OOP Architecture)
+
+Dự án điều khiển LED ngoài kết nối với board **ESP32 DevKit V1** sử dụng nút nhấn thông qua thư viện **OneButton** và cấu trúc lập trình hướng đối tượng (OOP) với lớp `LED`.
+
+---
+
+## 📌 Tính năng chính
+
+- **Nhấn đơn (Single Click):** Bật hoặc Tắt LED (Toggle).
+- **Nhấn kép (Double Click):** Bật chế độ nhấp nháy LED với chu kỳ 200ms.
+- **Kiến trúc mã nguồn mở rộng (OOP):** Tách biệt logic quản lý LED (`LED.h`) giúp mã nguồn trong `main.cpp` gọn gàng và dễ bảo trì.
+- **Xử lý bất đồng bộ (Non-blocking):** Không sử dụng `delay()`, đảm bảo nút nhấn luôn phản hồi tức thì.
+
+---
+
+Phần cứng
+1. **ESP32 DevKit V1** (1 board)
+2. **Button 4 pins** (1 cái)
+3. **LED 5mm** (1 cái)
+4. **Điện trở 220Ω - 330Ω** (1 cái)
+5. **Breadboard & Dây cắm**
+
+---
+
+Sơ đồ kết nối
+D21 - Button - GND
+D4 - led(-) - led(+) - R(1k, 1/4w) - 3.3v
+### 1. Mạch LED (Cấu hình Active LOW)
+- **Chân Anode (+ / Chân dài) LED:** Nối vào chân **3.3V** của ESP32.
+- **Chân Cathode (- / Chân ngắn) LED:** Nối qua điện trở 220Ω vào chân **GPIO 5 (D5)** của ESP32.
+
+> *Lưu ý: Do mạch cấu hình Active LOW, khi GPIO 5 ở mức LOW (0V) thì LED sẽ SÁNG, khi ở mức HIGH (3.3V) thì LED sẽ TẮT.*
+
+
+---
+
+##Thư mục dự án
+
+```text
+One_button/
+├── include/
+│   └── LED.h          # Thư viện lớp đối tượng quản lý LED
+├── src/
+│   └── main.cpp       # Chương trình chính (setup & loop)
+├── .gitignore
+├── platformio.ini     # Cấu hình môi trường PlatformIO & Thư viện
+└── README.md          # Tài liệu hướng dẫn dự án
